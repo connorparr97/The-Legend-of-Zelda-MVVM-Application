@@ -1,8 +1,10 @@
 ﻿using FunctionZero.CommandZero;
 using FunctionZero.MvvmZero;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TLOZ.Models;
@@ -56,44 +58,39 @@ namespace TLOZ.MVVM.PageViewModels
 
             SearchCommand = new CommandBuilder().SetExecuteAsync(GrabGames).Build();
 
-            Task.Run(async () =>
-            {
-                System.Diagnostics.Debug.WriteLine("started");
-                result = await _zeldaService.GetAllGamesAsync();
-                System.Diagnostics.Debug.Write("got all games async");
-                Result = result;
-                CreateList();
-
-                System.Diagnostics.Debug.Write("list created");
-            });
+            Exrin.Common.ThreadHelper.Init(SynchronizationContext.Current);
+            Exrin.Common.ThreadHelper.RunOnUIThread(async () => { await GrabGames(); });
         }
-    
+
+
 
 
         public async Task GrabGames()
         {
-            System.Diagnostics.Debug.WriteLine("started");
+ 
             result = await _zeldaService.GetAllGamesAsync();
-            System.Diagnostics.Debug.Write("got all games async");
-            Result = result;
-            CreateList();
-
-            System.Diagnostics.Debug.Write("list created");
-
-
-        }
-
-        public void CreateList()
-        {
-            System.Diagnostics.Debug.Write("creating list");
             
-            foreach (var i in result.data) 
-            {
-                gamesList.Add(i);
-                System.Diagnostics.Debug.WriteLine("added");
+            Result = result;
 
+            if (result != null)
+            {
+                foreach (var i in result.data)
+                {
+                    var tmp = i.released_date.TrimStart();
+                    i.released_date = tmp; 
+                    System.Diagnostics.Debug.Write($"date:{i.released_date}");
+                    gamesList.Add(i);
+
+                }
             }
+            else
+                await GrabGames(); 
+
+
+
         }
+
+
 
 
 

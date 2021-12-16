@@ -7,7 +7,7 @@
         <Grid Padding ="5,0,5,0" RowDefinitions="Auto, Auto, Auto, *, Auto, Auto"  BackgroundColor="LightGray">
             <Label Grid.Row="0" Text="Zelda APP" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="20"/>
             <StackLayout Grid.Row="3">
-                <ListView SelectedItem="{Binding Display, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Black" Grid.ColumnSpan="1">
+                <ListView SelectedItem="{Binding Result, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Black" Grid.ColumnSpan="1">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
