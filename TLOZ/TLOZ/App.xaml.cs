@@ -6,11 +6,16 @@ using TLOZ.MVVM.PageViewModels;
 using System.Threading.Tasks;
 using TLOZ.Services;
 
+
 namespace TLOZ
 {
     public partial class App : Application
     {
         public Locator Locator { get; private set;}
+
+
+
+
 
         public App()
         {
@@ -25,7 +30,7 @@ namespace TLOZ
             _ = Locator.SetFirstPage();
         }
 
-        protected override async void OnStart()
+        protected override void OnStart()
         {
         }
 

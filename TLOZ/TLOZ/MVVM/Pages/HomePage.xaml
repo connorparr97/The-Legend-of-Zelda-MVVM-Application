@@ -2,35 +2,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TLOZ.MVVM.Pages.HomePage">
-             
 
-        <StackLayout>
-        <Button Text="Search" Command="{Binding SearchCommand}" Grid.Column="1" BackgroundColor="#2E333A" TextColor="White"/>
+    <ContentPage.Content>
+        <Grid Padding ="5,0,5,0" RowDefinitions="Auto, Auto, Auto, *, Auto, Auto"  BackgroundColor="LightGray">
+            <Label Grid.Row="0" Text="Zelda APP" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="20"/>
+            <StackLayout Grid.Row="3">
+                <ListView SelectedItem="{Binding Display, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Black" Grid.ColumnSpan="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="20,20,20,20" ColumnDefinitions="Auto,*">
+                                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,100" Padding="5,0,5,0">
+                                        <Label Text="{Binding name}" Grid.Row="0"  HorizontalOptions="Start" FontSize="20" TextColor="White"/>
+                                        <Label Text="{Binding description}" Grid.Row="2"  HorizontalOptions="Start" FontSize="20" TextColor="White"/>
+                                        <Label Text="{Binding released_date}" Grid.Row="1"  HorizontalOptions="Start" FontSize="20" TextColor="White"/>
+                                        
 
-        <Label Text="{Binding Result.count}" HorizontalOptions="Center" TextColor="Black"/>
-        <Label Text="{Binding name}" HorizontalOptions="Center" TextColor="Black"/>
+                                    </Grid>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
 
-        <ListView SelectedItem="{Binding Display, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="#2E333A" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="20,20,20,20" ColumnDefinitions="Auto,*">
-                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,100,Auto" Padding="5,0,5,0" Grid.Column="1">
-                                <Label Text="Title" Grid.Row="0"  HorizontalOptions="Start" FontSize="20" TextColor="LightBlue"/>
-                                <Label Text="{Binding name}" TextColor="FloralWhite" Grid.Row="1"/>
-                                <Label Text="skrt" TextColor="FloralWhite" Grid.Row="2"/>
-
-                            </Grid>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-    </StackLayout>
-
-
-
-
+    </ContentPage.Content>
+   
 
 </ContentPage>

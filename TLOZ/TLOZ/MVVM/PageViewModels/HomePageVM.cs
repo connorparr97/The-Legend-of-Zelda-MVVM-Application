@@ -1,6 +1,8 @@
 ﻿using FunctionZero.CommandZero;
 using FunctionZero.MvvmZero;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TLOZ.Models;
@@ -11,7 +13,12 @@ namespace TLOZ.MVVM.PageViewModels
 {
     public class HomePageVM : MvvmZeroBaseVm
     {
-        public GamesModel gamesModel { get; set; }
+        private GamesModel _gamesModel; 
+        public GamesModel gamesModel
+        {
+            get => _gamesModel;
+            set => SetProperty(ref _gamesModel, value);
+        }
 
         private readonly ZeldaService _zeldaService;
         private readonly IPageServiceZero _pageService;
@@ -23,7 +30,6 @@ namespace TLOZ.MVVM.PageViewModels
             set => SetProperty(ref _display, value);
         }
 
-        public GamesModel item { get; set; }
 
         private ObservableCollection<GamesModel> _gamesList;
         public ObservableCollection<GamesModel> gamesList
@@ -31,23 +37,6 @@ namespace TLOZ.MVVM.PageViewModels
             get => _gamesList;
             set => SetProperty(ref _gamesList, value);
         }
-
-        private string _name = "HATE THIS"; 
-
-        public string name
-        {
-            get => _name;
-            set => SetProperty(ref _name, value);
-        }
-
-
-        public string zName
-        {
-            get => _name;
-            set => SetProperty(ref _name, value);
-        }
-
-
 
         private GamesModel _result;
 
@@ -58,56 +47,59 @@ namespace TLOZ.MVVM.PageViewModels
             set => SetProperty(ref _result, value);
         }
 
-
-
         public HomePageVM(ZeldaService zeldaService, IPageServiceZero pageService)
         {
             _zeldaService = zeldaService;
             _pageService = pageService;
 
-            SearchCommand = new CommandBuilder().SetExecuteAsync(SearchExecute).Build();
-        }
+            gamesList = new ObservableCollection<GamesModel>();
 
-        public async Task SearchExecute()
-        {
-            await GrabGames(); 
+            SearchCommand = new CommandBuilder().SetExecuteAsync(GrabGames).Build();
+
+            Task.Run(async () =>
+            {
+                System.Diagnostics.Debug.WriteLine("started");
+                result = await _zeldaService.GetAllGamesAsync();
+                System.Diagnostics.Debug.Write("got all games async");
+                Result = result;
+                CreateList();
+
+                System.Diagnostics.Debug.Write("list created");
+            });
         }
+    
+
+
         public async Task GrabGames()
         {
+            System.Diagnostics.Debug.WriteLine("started");
             result = await _zeldaService.GetAllGamesAsync();
+            System.Diagnostics.Debug.Write("got all games async");
             Result = result;
-            CreateListAsync();
+            CreateList();
 
-            
+            System.Diagnostics.Debug.Write("list created");
+
+
         }
-        public async Task CreateListAsync()
+
+        public void CreateList()
         {
-            zName = ":(";
-
-            if (result != null)
+            System.Diagnostics.Debug.Write("creating list");
+            
+            foreach (var i in result.data) 
             {
-                foreach (var item in result.data)
-                {
-                    gamesList.Add(result);
-                    zName = item.name;
+                gamesList.Add(i);
+                System.Diagnostics.Debug.WriteLine("added");
 
-
-
-                }
             }
-            else
-            {
-                await GrabGames(); 
-            }
-
         }
-
 
 
 
 
 
     }
-
-
 }
+
+
