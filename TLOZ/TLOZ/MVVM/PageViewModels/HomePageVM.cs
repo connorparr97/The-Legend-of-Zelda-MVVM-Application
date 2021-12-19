@@ -64,9 +64,6 @@ namespace TLOZ.MVVM.PageViewModels
             
         }
 
-
-
-
         public async Task GrabGames()
         {
  
@@ -89,17 +86,7 @@ namespace TLOZ.MVVM.PageViewModels
             }
             else
                 await GrabGames(); 
-
-
-
         }
-
-
-
-
-
-
-
     }
 }
 

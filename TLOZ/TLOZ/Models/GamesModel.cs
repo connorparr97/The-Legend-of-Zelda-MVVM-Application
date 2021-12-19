@@ -20,8 +20,6 @@ namespace TLOZ.Models
             __v = v;
 
         }
-
-
             public string success { get; set; }
             public string count { get; set; }
             public GamesModel[] data { get; set; }
@@ -32,12 +30,5 @@ namespace TLOZ.Models
             public string publisher { get; set; }
             public string released_date { get; set; }
             public string __v { get; set; }
-
-
-
-
-
-
-
     }
 }

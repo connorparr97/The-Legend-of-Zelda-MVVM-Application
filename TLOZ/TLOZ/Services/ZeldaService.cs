@@ -13,8 +13,6 @@ namespace TLOZ.Services
         private readonly IRestService _restService;
         private readonly string _baseUrl;
 
-
-
         public ZeldaService(IRestService restService, string baseUrl)
         {
             _restService = restService;
@@ -26,13 +24,6 @@ namespace TLOZ.Services
             var result = await _restService.GetAsync<GamesModel>($"{_baseUrl}games?limit=100");
             return result.payload; 
         }
-
-        public async Task<GameInfoModel> GetGameDetails(string id)
-        {
-            var result = await _restService.GetAsync<GameInfoModel>($"{_baseUrl}games/{id}");
-            return result.payload; 
-        }
-
     }
 
 }
