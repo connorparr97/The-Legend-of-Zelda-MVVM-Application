@@ -58,8 +58,10 @@ namespace TLOZ.MVVM.PageViewModels
 
             SearchCommand = new CommandBuilder().SetExecuteAsync(GrabGames).Build();
 
+            //alternate way to force an await/aysnc to start on awake within a constructor 
             Exrin.Common.ThreadHelper.Init(SynchronizationContext.Current);
             Exrin.Common.ThreadHelper.RunOnUIThread(async () => { await GrabGames(); });
+            
         }
 
 
@@ -77,9 +79,11 @@ namespace TLOZ.MVVM.PageViewModels
                 foreach (var i in result.data)
                 {
                     var tmp = i.released_date.TrimStart();
-                    i.released_date = tmp; 
-                    System.Diagnostics.Debug.Write($"date:{i.released_date}");
-                    gamesList.Add(i);
+                    i.released_date = tmp;
+
+
+                    if (gamesList.Count < Int32.Parse(result.count)) 
+                        gamesList.Add(i);
 
                 }
             }
