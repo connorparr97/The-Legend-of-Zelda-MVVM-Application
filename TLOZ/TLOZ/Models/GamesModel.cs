@@ -6,7 +6,7 @@ namespace TLOZ.Models
 {
     public class GamesModel
     {
-        public GamesModel(GamesModel[] _data, string _success, string _count, string id, string _name, string _descrip, string _dev, string _pub, string _released, string v, string _zName)
+        public GamesModel(GamesModel[] _data, string _success, string _count, string id, string _name, string _descrip, string _dev, string _pub, string _released, string v, string _zName, string _image)
         {
             data = _data;
             success = _success;
@@ -18,6 +18,8 @@ namespace TLOZ.Models
             publisher = _pub;
             released_date = _released;
             __v = v;
+            image = _image; 
+
 
         }
             public string success { get; set; }
@@ -30,5 +32,8 @@ namespace TLOZ.Models
             public string publisher { get; set; }
             public string released_date { get; set; }
             public string __v { get; set; }
+
+        // create extra variable for image links as API doesn't support it 
+            public string image { get; set; }
     }
 }
