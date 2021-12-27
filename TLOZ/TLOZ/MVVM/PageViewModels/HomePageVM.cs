@@ -78,7 +78,7 @@ namespace TLOZ.MVVM.PageViewModels
                 {
                     var tmp = i.released_date.TrimStart();
                     i.released_date = tmp;
-                    await CorrectMissingAPIInfo(); 
+                    CorrectMissingAPIInfo(); 
                     if (gamesList.Count < Int32.Parse(result.count)) 
                         gamesList.Add(i);
                 }
@@ -90,12 +90,12 @@ namespace TLOZ.MVVM.PageViewModels
                 await GrabGames(); 
         }
 
-        public async Task OrderGames()
+        public void OrderGames()
         {
 
         }
 
-        public async Task CorrectMissingAPIInfo()
+        public void CorrectMissingAPIInfo()
         {
             foreach(var l in result.data)
             {
@@ -183,9 +183,12 @@ namespace TLOZ.MVVM.PageViewModels
                                
                 if (l._id == "5f6ce9d805615a85623ec2cd") //FRESHLY PICKED TINGLE RUPEELAND 
                     l.image = "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/8/81/FPTRR_UK_Box_Art.jpg/revision/latest?cb=20181118012256";
-                                               
+
                 if (l._id == "5f6ce9d805615a85623ec2d2") //ZELDAS ADVENTURE
+                {
                     l.image = "https://1.bp.blogspot.com/-SqANJ-6THCM/YC9W2AwNNwI/AAAAAAAA4IY/y7Q-e9bnaHYzxMEWTeuXsU8dFmrFKaxMACLcBGAsYHQ/s411/zeldausa.png";
+                    l.released_date = "June 5, 1994";
+                }
                                                                
                 if (l._id == "5f6ce9d805615a85623ec2d1") //HYRULE WARRIORS LEGENDS
                     l.image = "https://images.nintendolife.com/5328a4eb7d9f0/hyrule-warriors-legends-cover.cover_large.jpg";
