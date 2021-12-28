@@ -87,6 +87,9 @@ namespace TLOZ.MVVM.PageViewModels
                 gamesList.Remove(gamesList[16]);//remove triforce heroes copy from list 
                 gamesList.Remove(gamesList[17]); //remove four swords copy from list
                 gamesList.Remove(gamesList[18]); //remove four swords x3 copy fom list 
+
+
+
             }
             else
                 await GrabGames(); 
@@ -94,7 +97,6 @@ namespace TLOZ.MVVM.PageViewModels
 
         public void OrderGames()
         {
-
         }
 
         public void CorrectMissingAPIInfo()
@@ -102,7 +104,9 @@ namespace TLOZ.MVVM.PageViewModels
             foreach(var l in result.data)
             {
                 if (l._id == "5f6ce9d805615a85623ec2b7") // ZELDA 1 (1987)
-                    l.image = "https://upload.wikimedia.org/wikipedia/en/4/41/Legend_of_zelda_cover_%28with_cartridge%29_gold.png";               
+                {
+                    l.image = "https://upload.wikimedia.org/wikipedia/en/4/41/Legend_of_zelda_cover_%28with_cartridge%29_gold.png"; 
+                }
                 
                 if (l._id == "5f6ce9d805615a85623ec2b8") // LINK TO THE PAST
                     l.image = "https://m.media-amazon.com/images/M/MV5BMDNlYWY4NmEtNWUwOC00YWE1LWJhNzgtMzVhNDdkYTZhZGZhXkEyXkFqcGdeQXVyMTA3NjAwMDc4._V1_.jpg";
