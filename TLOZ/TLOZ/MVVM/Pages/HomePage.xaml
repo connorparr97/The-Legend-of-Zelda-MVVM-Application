@@ -4,38 +4,32 @@
              x:Class="TLOZ.MVVM.Pages.HomePage">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Transparent">
-            <Grid RowDefinitions="Auto"  BackgroundColor="#0D9263">
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+            <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
+            <Grid RowDefinitions="Auto" BackgroundColor="Transparent" Grid.Column="0">
                 <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
-
-
-
-                    <ListView SelectedItem="{Binding Result, Mode=TwoWay}" ItemsSource="{Binding gamesList}" HasUnevenRows="True" 
-                                SelectionMode="None" 
-                               BackgroundColor="Transparent">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-
-                                    <Grid ColumnDefinitions="Auto,Auto">
-                                        <Grid RowDefinitions="Auto,Auto,Auto" Grid.Column="1">
-                                            <Label Text="{Binding name}" Grid.Row="0" FontSize="25" FontAttributes="Bold" TextColor="White" />
+                <Label Text="The Legend of Zelda: The Collection" FontSize="36" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold"/>
+            </Grid>
+            
+            <Grid BackgroundColor="#0D9263" Grid.Column="1">
+                <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
+                <ListView SelectedItem="{Binding Result, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Transparent" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnDefinitions="Auto,Auto">
+                                    <Grid RowDefinitions="Auto,Auto,Auto" Grid.Column="1">
+                                        <Label Text="{Binding name}" Grid.Row="0" FontSize="25" FontAttributes="Bold" TextColor="White" />
                                         <Label Text="{Binding released_date}" Grid.Row="1" FontSize="20" TextColor="White" FontAttributes="Bold"/>
-
                                         <Label Text="{Binding description}" Grid.Row="2" FontSize="22" TextColor="White" FontAttributes="Bold" BackgroundColor="#BAB8B1"/>
-
-                                        </Grid>
-                                        <Image Source="{Binding image}" HeightRequest="320" WidthRequest="240" Aspect="AspectFit" Grid.Column="0"/>
                                     </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
+                                    <Image Source="{Binding image}" HeightRequest="320" WidthRequest="240" Aspect="AspectFit" Grid.Column="0"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </Grid>
-        </StackLayout>
-
     </ContentPage.Content>
-   
-
 </ContentPage>

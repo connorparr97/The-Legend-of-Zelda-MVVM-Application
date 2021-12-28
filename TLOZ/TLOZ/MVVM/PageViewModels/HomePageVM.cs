@@ -80,13 +80,15 @@ namespace TLOZ.MVVM.PageViewModels
                 {
                     var tmp = i.released_date.TrimStart();
                     i.released_date = tmp;
-                    CorrectMissingAPIInfo(); 
+                    CorrectMissingAPIInfo();
                     if (gamesList.Count < Int32.Parse(result.count)) 
                         gamesList.Add(i);
                 }
                 gamesList.Remove(gamesList[16]);//remove triforce heroes copy from list 
                 gamesList.Remove(gamesList[17]); //remove four swords copy from list
                 gamesList.Remove(gamesList[18]); //remove four swords x3 copy fom list 
+                System.Diagnostics.Debug.WriteLine($"The lengnth of list array is: {gamesList.Count}");
+                OrderGames();
 
 
 
@@ -97,6 +99,37 @@ namespace TLOZ.MVVM.PageViewModels
 
         public void OrderGames()
         {
+            ObservableCollection<GamesModel> tmpList = new ObservableCollection<GamesModel>();
+            tmpList.Add(gamesList[0]);//0              
+            tmpList.Add(gamesList[6]);//1            
+            tmpList.Add(gamesList[1]);//2
+            tmpList.Add(gamesList[21]);//3
+            tmpList.Add(gamesList[19]);//4
+            tmpList.Add(gamesList[16]);//5
+            tmpList.Add(gamesList[26]);//6
+            tmpList.Add(gamesList[24]);//7
+            tmpList.Add(gamesList[11]);//8
+            tmpList.Add(gamesList[3]);//9
+            tmpList.Add(gamesList[4]);//10
+            tmpList.Add(gamesList[5]);//11
+            tmpList.Add(gamesList[2]);//12
+            tmpList.Add(gamesList[9]);//13
+            tmpList.Add(gamesList[7]);//14
+            tmpList.Add(gamesList[13]);//15
+            tmpList.Add(gamesList[17]);//16
+            tmpList.Add(gamesList[25]);//17
+            tmpList.Add(gamesList[8]);//18
+            tmpList.Add(gamesList[20]);//19
+            tmpList.Add(gamesList[10]);//20
+            tmpList.Add(gamesList[23]);//21
+            tmpList.Add(gamesList[22]);//22
+            tmpList.Add(gamesList[12]);//23
+            tmpList.Add(gamesList[15]);//24
+            tmpList.Add(gamesList[27]);//25
+            tmpList.Add(gamesList[14]);//26
+            tmpList.Add(gamesList[18]);//27
+            gamesList.Clear();
+            gamesList = tmpList;
         }
 
         public void CorrectMissingAPIInfo()
