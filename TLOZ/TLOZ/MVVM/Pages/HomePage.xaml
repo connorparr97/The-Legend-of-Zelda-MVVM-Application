@@ -6,7 +6,14 @@
     <ContentPage.Content>
         <Grid RowDefinitions="Auto" ColumnDefinitions="*,*" BackgroundColor="#052E2C">
             <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
-            <Label Text="The Legend of Zelda: The Collection" FontSize="36" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
+            
+            <Grid RowDefinitions="Auto,Auto">
+                <Label Text="The Legend of Zelda: The Collection" FontSize="36" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0"/>
+                <Label Text="Developed by Connor Parr" FontSize="24" HorizontalOptions="End" TextColor="White"  Grid.Row="1" BackgroundColor="#BAB8B1"/>
+                <Label Text="Created with Xamarin Forms" FontSize="24" HorizontalOptions="Start" TextColor="White"  Grid.Row="1" BackgroundColor="#BAB8B1"/>
+            </Grid>
+
+            <WebView Source="{Binding Browser}"></WebView>
 
             <Grid BackgroundColor="#052E2C" Grid.Column="1">
                 <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>

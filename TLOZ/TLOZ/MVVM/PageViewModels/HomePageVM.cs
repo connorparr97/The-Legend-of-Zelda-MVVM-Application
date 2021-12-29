@@ -51,12 +51,21 @@ namespace TLOZ.MVVM.PageViewModels
             set => SetProperty(ref _result, value);
         }
 
+        private string _browser; 
+
+        public string Browser
+        {
+            get => _browser;
+            set => SetProperty(ref _browser, value);
+        }
+
         public HomePageVM(ZeldaService zeldaService, IPageServiceZero pageService)
         {
             _zeldaService = zeldaService;
             _pageService = pageService;
 
             gamesList = new ObservableCollection<GamesModel>();
+            Browser = "https://www.zeldadungeon.net/";
 
             backgroundImage = "https://external-preview.redd.it/9Enzn9tzmnNSRturLNyWm3_auqy74mcRYbbTdxoJqdk.jpg?auto=webp&s=30bcb2ef72e81ed10118dbeed1ba63ec39f5a3f0"; 
 
