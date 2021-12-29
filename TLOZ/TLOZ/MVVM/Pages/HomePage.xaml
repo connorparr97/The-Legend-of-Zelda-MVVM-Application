@@ -4,14 +4,11 @@
              x:Class="TLOZ.MVVM.Pages.HomePage">
 
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*" BackgroundColor="#052E2C">
             <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
-            <Grid RowDefinitions="Auto" BackgroundColor="Transparent" Grid.Column="0">
-                <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
-                <Label Text="The Legend of Zelda: The Collection" FontSize="36" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold"/>
-            </Grid>
-            
-            <Grid BackgroundColor="#0D9263" Grid.Column="1">
+            <Label Text="The Legend of Zelda: The Collection" FontSize="36" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
+
+            <Grid BackgroundColor="#052E2C" Grid.Column="1">
                 <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
                 <ListView SelectedItem="{Binding Result, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Transparent" HasUnevenRows="True">
                     <ListView.ItemTemplate>
