@@ -6,6 +6,9 @@ using TLOZ.MVVM.PageViewModels;
 using System.Threading.Tasks;
 using TLOZ.Services;
 [assembly: ExportFont("Zeldafont.otf", Alias = "Zeldafont")]
+[assembly: ExportFont("BotwFont.otf", Alias = "Botwfont")]
+[assembly: ExportFont("WindwakerFont.ttf", Alias = "Windwakerfont")]
+[assembly: ExportFont("Windwaker2Font.ttf", Alias = "Windwaker2font")]
 
 namespace TLOZ
 {
