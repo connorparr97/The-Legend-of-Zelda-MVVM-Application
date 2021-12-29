@@ -6,14 +6,21 @@
     <ContentPage.Content>
         <Grid RowDefinitions="Auto" ColumnDefinitions="*,*" BackgroundColor="#052E2C">
             <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
-            
-            <Grid RowDefinitions="Auto,Auto">
-                <Label Text="The Legend of Zelda: The Collection" FontSize="36" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0"/>
-                <Label Text="Developed by Connor Parr" FontSize="24" HorizontalOptions="End" TextColor="White"  Grid.Row="1" BackgroundColor="#BAB8B1"/>
-                <Label Text="Created with Xamarin Forms" FontSize="24" HorizontalOptions="Start" TextColor="White"  Grid.Row="1" BackgroundColor="#BAB8B1"/>
-            </Grid>
 
-            <WebView Source="{Binding Browser}"></WebView>
+            <Grid RowDefinitions="Auto,Auto,*">
+                <Label Text="The Legend of Zelda: The Collection" FontSize="36" FontFamily="Zeldafont" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0"/>
+                <Label Text="Developed by Connor Parr" FontSize="24" HorizontalOptions="End" TextColor="White" FontFamily="Zeldafont"  Grid.Row="1" BackgroundColor="#BAB8B1"/>
+                
+                <Picker x:Name="Gender" HorizontalOptions="Center" Grid.Row="1" SelectedIndex="0" BackgroundColor="White">
+                    <Picker.Items>
+                        <x:String>ZeldaDungeon</x:String>
+                        <x:String>ZeldaUniverse</x:String>
+                    </Picker.Items>
+                </Picker>
+                
+                <Label Text="Created with Xamarin Forms" FontSize="24" HorizontalOptions="Start" TextColor="White" FontFamily="Zeldafont"  Grid.Row="1" BackgroundColor="#BAB8B1"/>
+                <WebView Source="{Binding Browser}" Grid.Row="2"/>
+            </Grid>
 
             <Grid BackgroundColor="#052E2C" Grid.Column="1">
                 <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
@@ -23,9 +30,9 @@
                             <ViewCell>
                                 <Grid ColumnDefinitions="Auto,Auto">
                                     <Grid RowDefinitions="Auto,Auto,Auto" Grid.Column="1">
-                                        <Label Text="{Binding name}" Grid.Row="0" FontSize="25" FontAttributes="Bold" TextColor="White" />
-                                        <Label Text="{Binding released_date}" Grid.Row="1" FontSize="20" TextColor="White" FontAttributes="Bold"/>
-                                        <Label Text="{Binding description}" Grid.Row="2" FontSize="22" TextColor="White" FontAttributes="Bold" BackgroundColor="#BAB8B1"/>
+                                        <Label Text="{Binding name}" Grid.Row="0" FontSize="27" FontAttributes="Bold" TextColor="White" FontFamily="Zeldafont" />
+                                        <Label Text="{Binding released_date}" Grid.Row="1" FontSize="20" TextColor="White" FontAttributes="Bold"  />
+                                        <Label Text="{Binding description}" Grid.Row="2" FontSize="22" TextColor="White" FontAttributes="Bold" BackgroundColor="#BAB8B1" />
                                     </Grid>
                                     <Image Source="{Binding image}" HeightRequest="320" WidthRequest="240" Aspect="AspectFit" Grid.Column="0"/>
                                 </Grid>

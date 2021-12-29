@@ -5,10 +5,11 @@ using Xamarin.Forms.Xaml;
 using TLOZ.MVVM.PageViewModels;
 using System.Threading.Tasks;
 using TLOZ.Services;
-
+[assembly: ExportFont("Zeldafont.otf", Alias = "Zeldafont")]
 
 namespace TLOZ
 {
+    
     public partial class App : Application
     {
         public Locator Locator { get; private set;}
