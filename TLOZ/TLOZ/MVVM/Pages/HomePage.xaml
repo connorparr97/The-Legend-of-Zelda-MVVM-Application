@@ -11,20 +11,18 @@
                 <Label Text="The Legend of Zelda: The Collection" FontSize="36" FontFamily="Windwakerfont" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0"  BackgroundColor="#052E2C"/>
                 <Label Text="Developed by Connor Parr" FontSize="24" HorizontalOptions="End" TextColor="White" FontFamily="Windwaker2font"  Grid.Row="1" BackgroundColor="#052E2C"/>
 
-                <Picker FontFamily="Windwakerfont" TextColor="White" x:Name="Gender" HorizontalOptions="Center" Grid.Row="1" SelectedIndex="0" SelectedItem="0" BackgroundColor="#08615C">
-                    <Picker.Items>
-                        <x:String>ZeldaDungeon</x:String>
-                        <x:String>ZeldaUniverse</x:String>
-                    </Picker.Items>
-                </Picker>
+                <Picker x:Name="Dropdownpick" ItemsSource="{Binding FilterList}" SelectedIndex="{Binding SelectedFilter, Mode=TwoWay}" ItemDisplayBinding="{Binding Filter}" SelectedItem="{Binding SelectedFilter, Mode=TwoWay}" 
+                          SelectedIndexChanged="Handle_SelectedIndexChanged" FontFamily="Windwakerfont" TextColor="White" HorizontalOptions="Center" Grid.Row="1" BackgroundColor="#08615C"/>
+
 
                 <Label Text="Created with Xamarin Forms" FontSize="24" HorizontalOptions="Start" TextColor="White" FontFamily="Windwaker2font"  Grid.Row="1" BackgroundColor="#052E2C"/>
-                <WebView Source="{Binding Browser}" Grid.Row="2"/>
+                <WebView x:Name="webv" Grid.Row="2"/>
             </Grid>
             
 
             <Grid BackgroundColor="#052E2C" Grid.Column="1">
                 <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
+                
                 <ListView SelectedItem="{Binding Result, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Transparent" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>

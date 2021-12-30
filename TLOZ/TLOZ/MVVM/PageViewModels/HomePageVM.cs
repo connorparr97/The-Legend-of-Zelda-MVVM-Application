@@ -3,6 +3,7 @@ using FunctionZero.MvvmZero;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -50,7 +51,7 @@ namespace TLOZ.MVVM.PageViewModels
             get => _result;
             set => SetProperty(ref _result, value);
         }
-
+        public List<string> websiteList; //0-ZeldaDungeon 1-ZeldaUniverse
         private string _browser; 
 
         public string Browser
@@ -59,28 +60,69 @@ namespace TLOZ.MVVM.PageViewModels
             set => SetProperty(ref _browser, value);
         }
 
+        public IList<PickerModel> FilterList { get; set; }
+
+        private PickerModel _selectedFilter;
+        public PickerModel _currentSelectedFilter { get; set; }
+
+        public PickerModel SelectedFilter
+        {
+            get => _selectedFilter; 
+            set
+            {
+                if (_selectedFilter != value)
+                {
+                    {
+                        _selectedFilter = value;
+                        OnPropertyChanged();
+
+                    }
+                }
+            }
+        }
+
+
         public HomePageVM(ZeldaService zeldaService, IPageServiceZero pageService)
         {
             _zeldaService = zeldaService;
             _pageService = pageService;
 
-            gamesList = new ObservableCollection<GamesModel>();
-            Browser = "https://www.zeldadungeon.net/";
+            FilterList = new List<PickerModel>(new[]
+            {
+                new PickerModel {Filter = "ZeldaDungeon"},
+                new PickerModel {Filter = "ZeldaUniverse"}
 
-            backgroundImage = "https://external-preview.redd.it/9Enzn9tzmnNSRturLNyWm3_auqy74mcRYbbTdxoJqdk.jpg?auto=webp&s=30bcb2ef72e81ed10118dbeed1ba63ec39f5a3f0"; 
+            });
+            SelectedFilter = FilterList[0];
+            _currentSelectedFilter = SelectedFilter; 
+
+
+
+            gamesList = new ObservableCollection<GamesModel>();
+
+            websiteList = new List<string>();
+            websiteList.Add("https://www.zeldadungeon.net/"); // ZELDA DUNGEON LIST[0]
+            websiteList.Add("https://zeldauniverse.net/"); // ZELDA UNIVERSE LIST[1]
+            Browser = websiteList[0]; // set web view to the first website in the list(ZeldaDungeon)
+
+            if (_currentSelectedFilter.Filter == "ZeldaDungeon")
+                Browser = websiteList[0];
+            if (_currentSelectedFilter.Filter == "ZeldaUniverse")
+                Browser = websiteList[1];
+
+            backgroundImage = "https://external-preview.redd.it/9Enzn9tzmnNSRturLNyWm3_auqy74mcRYbbTdxoJqdk.jpg?auto=webp&s=30bcb2ef72e81ed10118dbeed1ba63ec39f5a3f0"; //fetch background image for app from URL
 
             SearchCommand = new CommandBuilder().SetExecuteAsync(GrabGames).Build();
 
             //alternate way to force an await/aysnc to start on awake within a constructor 
             Exrin.Common.ThreadHelper.Init(SynchronizationContext.Current);
-            Exrin.Common.ThreadHelper.RunOnUIThread(async () => { await GrabGames(); });
+            Exrin.Common.ThreadHelper.RunOnUIThread(async () => {await GrabGames();});
             
         }
 
         public async Task GrabGames()
         {
-            result = await _zeldaService.GetAllGamesAsync();
-            
+            result = await _zeldaService.GetAllGamesAsync();          
             Result = result;
 
             if (result != null)
@@ -95,12 +137,8 @@ namespace TLOZ.MVVM.PageViewModels
                 }
                 gamesList.Remove(gamesList[16]);//remove triforce heroes copy from list 
                 gamesList.Remove(gamesList[17]); //remove four swords copy from list
-                gamesList.Remove(gamesList[18]); //remove four swords x3 copy fom list 
-                System.Diagnostics.Debug.WriteLine($"The lengnth of list array is: {gamesList.Count}");
+                gamesList.Remove(gamesList[18]); //remove four swords x3 copy fom list ;
                 OrderGames();
-
-
-
             }
             else
                 await GrabGames(); 
@@ -243,10 +281,6 @@ namespace TLOZ.MVVM.PageViewModels
                                                                                
                 if (l._id == "5f6ce9d805615a85623ec2d6") //LINKS CROSSBOW TRAINING
                     l.image = "https://www.mobygames.com/images/covers/l/98340-link-s-crossbow-training-wii-front-cover.jpg";
-
-
-
-
             }
         }
     }
