@@ -25,19 +25,16 @@ namespace TLOZ.MVVM.PageViewModels
         private GamesModel _result;
         public GamesModel result;
         public ImageSource backgroundImage { get; set; }
-
         public GamesModel gamesModel
         {
             get => _gamesModel;
             set => SetProperty(ref _gamesModel, value);
         }
-
         public GamesModel Display
         {
             get => _display;
             set => SetProperty(ref _display, value);
         }
-
         public ObservableCollection<GamesModel> gamesList
         {
             get => _gamesList;
@@ -45,7 +42,6 @@ namespace TLOZ.MVVM.PageViewModels
         }
 
         public ObservableCollection<GamesModel> duplicateGamesList; 
-
         public GamesModel Result
         {
             get => _result;
@@ -53,18 +49,14 @@ namespace TLOZ.MVVM.PageViewModels
         }
         public List<string> websiteList; //0-ZeldaDungeon 1-ZeldaUniverse
         private string _browser; 
-
         public string Browser
         {
             get => _browser;
             set => SetProperty(ref _browser, value);
         }
-
         public IList<PickerModel> FilterList { get; set; }
-
         private PickerModel _selectedFilter;
         public PickerModel _currentSelectedFilter { get; set; }
-
         public PickerModel SelectedFilter
         {
             get => _selectedFilter; 
@@ -80,8 +72,6 @@ namespace TLOZ.MVVM.PageViewModels
                 }
             }
         }
-
-
         public HomePageVM(ZeldaService zeldaService, IPageServiceZero pageService)
         {
             _zeldaService = zeldaService;
@@ -90,13 +80,12 @@ namespace TLOZ.MVVM.PageViewModels
             FilterList = new List<PickerModel>(new[]
             {
                 new PickerModel {Filter = "ZeldaDungeon"},
-                new PickerModel {Filter = "ZeldaUniverse"}
+                new PickerModel {Filter = "ZeldaUniverse"},
+                new PickerModel {Filter = "Nintendolife"}
 
             });
             SelectedFilter = FilterList[0];
             _currentSelectedFilter = SelectedFilter; 
-
-
 
             gamesList = new ObservableCollection<GamesModel>();
 
@@ -119,7 +108,6 @@ namespace TLOZ.MVVM.PageViewModels
             Exrin.Common.ThreadHelper.RunOnUIThread(async () => {await GrabGames();});
             
         }
-
         public async Task GrabGames()
         {
             result = await _zeldaService.GetAllGamesAsync();          
@@ -143,7 +131,6 @@ namespace TLOZ.MVVM.PageViewModels
             else
                 await GrabGames(); 
         }
-
         public void OrderGames()
         {
             ObservableCollection<GamesModel> tmpList = new ObservableCollection<GamesModel>();
@@ -178,7 +165,6 @@ namespace TLOZ.MVVM.PageViewModels
             gamesList.Clear();
             gamesList = tmpList;
         }
-
         public void CorrectMissingAPIInfo()
         {
             foreach(var l in result.data)

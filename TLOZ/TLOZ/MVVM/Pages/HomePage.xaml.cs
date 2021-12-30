@@ -27,8 +27,8 @@ namespace TLOZ.MVVM.Pages
                 webv.Source = "https://www.zeldadungeon.net/";
             if (Dropdownpick.SelectedIndex == 1)
                 webv.Source = "https://zeldauniverse.net/";
-            if(Dropdownpick.SelectedIndex == 2)
-                webv.Source
+            if (Dropdownpick.SelectedIndex == 2)
+                webv.Source = "https://www.nintendolife.com/zelda";
         }
     }
 }
