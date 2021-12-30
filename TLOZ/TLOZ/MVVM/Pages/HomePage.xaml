@@ -9,13 +9,13 @@
 
             <Grid RowDefinitions="Auto,Auto,*">
                 <Label Text="The Legend of Zelda: The Collection" FontSize="36" FontFamily="Windwakerfont" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0"  BackgroundColor="#052E2C"/>
-                <Label Text="Developed by Connor Parr" FontSize="24" HorizontalOptions="End" TextColor="White" FontFamily="Windwaker2font"  Grid.Row="1" BackgroundColor="#052E2C"/>
+                <Label Text="Developed by Connor Parr" FontSize="24" HorizontalOptions="End" TextColor="White" FontFamily="Windwakerfont"  Grid.Row="1" BackgroundColor="#052E2C"/>
 
                 <Picker x:Name="Dropdownpick" ItemsSource="{Binding FilterList}" SelectedIndex="{Binding SelectedFilter, Mode=TwoWay}" ItemDisplayBinding="{Binding Filter}" SelectedItem="{Binding SelectedFilter, Mode=TwoWay}" 
                           SelectedIndexChanged="Handle_SelectedIndexChanged" FontFamily="Windwakerfont" TextColor="White" HorizontalOptions="Center" Grid.Row="1" BackgroundColor="#08615C"/>
 
 
-                <Label Text="Created with Xamarin Forms" FontSize="24" HorizontalOptions="Start" TextColor="White" FontFamily="Windwaker2font"  Grid.Row="1" BackgroundColor="#052E2C"/>
+                <Label Text="Created with Xamarin Forms" FontSize="24" HorizontalOptions="Start" TextColor="White" FontFamily="Windwakerfont"  Grid.Row="1" BackgroundColor="#052E2C"/>
                 <WebView x:Name="webv" Grid.Row="2"/>
             </Grid>
             

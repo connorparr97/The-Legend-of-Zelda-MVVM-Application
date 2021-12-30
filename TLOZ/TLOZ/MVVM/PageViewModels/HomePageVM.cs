@@ -41,13 +41,11 @@ namespace TLOZ.MVVM.PageViewModels
             set => SetProperty(ref _gamesList, value);
         }
 
-        public ObservableCollection<GamesModel> duplicateGamesList; 
         public GamesModel Result
         {
             get => _result;
             set => SetProperty(ref _result, value);
         }
-        public List<string> websiteList; //0-ZeldaDungeon 1-ZeldaUniverse
         private string _browser; 
         public string Browser
         {
@@ -79,9 +77,17 @@ namespace TLOZ.MVVM.PageViewModels
 
             FilterList = new List<PickerModel>(new[]
             {
-                new PickerModel {Filter = "ZeldaDungeon"},
-                new PickerModel {Filter = "ZeldaUniverse"},
-                new PickerModel {Filter = "Nintendolife"}
+                new PickerModel {Filter = "ZeldaDungeon"}, //0
+                new PickerModel {Filter = "ZeldaUniverse"}, //1
+                new PickerModel {Filter = "Nintendolife"}, //2 
+                new PickerModel {Filter = "PureZC"}, //3 
+                new PickerModel {Filter = "ZeldaPalace"}, //4 
+                new PickerModel {Filter = "ZeldaWiki"}, //5 
+                new PickerModel {Filter = "Zeldapedia"}, //6 
+                new PickerModel {Filter = "ZeldaClassic"}, //7
+                new PickerModel {Filter = "ZeldaFanGameCentral"}, //8
+                new PickerModel {Filter = "ZeldaReorchestrated"} //9 
+
 
             });
             SelectedFilter = FilterList[0];
@@ -89,21 +95,11 @@ namespace TLOZ.MVVM.PageViewModels
 
             gamesList = new ObservableCollection<GamesModel>();
 
-            websiteList = new List<string>();
-            websiteList.Add("https://www.zeldadungeon.net/"); // ZELDA DUNGEON LIST[0]
-            websiteList.Add("https://zeldauniverse.net/"); // ZELDA UNIVERSE LIST[1]
-            Browser = websiteList[0]; // set web view to the first website in the list(ZeldaDungeon)
-
-            if (_currentSelectedFilter.Filter == "ZeldaDungeon")
-                Browser = websiteList[0];
-            if (_currentSelectedFilter.Filter == "ZeldaUniverse")
-                Browser = websiteList[1];
-
             backgroundImage = "https://external-preview.redd.it/9Enzn9tzmnNSRturLNyWm3_auqy74mcRYbbTdxoJqdk.jpg?auto=webp&s=30bcb2ef72e81ed10118dbeed1ba63ec39f5a3f0"; //fetch background image for app from URL
 
             SearchCommand = new CommandBuilder().SetExecuteAsync(GrabGames).Build();
 
-            //alternate way to force an await/aysnc to start on awake within a constructor 
+            //alternate way to force an async to run on awake within a constructor 
             Exrin.Common.ThreadHelper.Init(SynchronizationContext.Current);
             Exrin.Common.ThreadHelper.RunOnUIThread(async () => {await GrabGames();});
             
@@ -119,13 +115,13 @@ namespace TLOZ.MVVM.PageViewModels
                 {
                     var tmp = i.released_date.TrimStart();
                     i.released_date = tmp;
-                    CorrectMissingAPIInfo();
                     if (gamesList.Count < Int32.Parse(result.count)) 
                         gamesList.Add(i);
                 }
+                CorrectMissingAPIInfo();
                 gamesList.Remove(gamesList[16]);//remove triforce heroes copy from list 
                 gamesList.Remove(gamesList[17]); //remove four swords copy from list
-                gamesList.Remove(gamesList[18]); //remove four swords x3 copy fom list ;
+                gamesList.Remove(gamesList[18]); //remove four swords second copy fom list ;
                 OrderGames();
             }
             else
@@ -133,46 +129,44 @@ namespace TLOZ.MVVM.PageViewModels
         }
         public void OrderGames()
         {
-            ObservableCollection<GamesModel> tmpList = new ObservableCollection<GamesModel>();
-            tmpList.Add(gamesList[0]);//0              
-            tmpList.Add(gamesList[6]);//1            
-            tmpList.Add(gamesList[1]);//2
-            tmpList.Add(gamesList[21]);//3
-            tmpList.Add(gamesList[19]);//4
-            tmpList.Add(gamesList[16]);//5
-            tmpList.Add(gamesList[26]);//6
-            tmpList.Add(gamesList[24]);//7
-            tmpList.Add(gamesList[11]);//8
-            tmpList.Add(gamesList[3]);//9
-            tmpList.Add(gamesList[4]);//10
-            tmpList.Add(gamesList[5]);//11
-            tmpList.Add(gamesList[2]);//12
-            tmpList.Add(gamesList[9]);//13
-            tmpList.Add(gamesList[7]);//14
-            tmpList.Add(gamesList[13]);//15
-            tmpList.Add(gamesList[17]);//16
-            tmpList.Add(gamesList[25]);//17
-            tmpList.Add(gamesList[8]);//18
-            tmpList.Add(gamesList[20]);//19
-            tmpList.Add(gamesList[10]);//20
-            tmpList.Add(gamesList[23]);//21
-            tmpList.Add(gamesList[22]);//22
-            tmpList.Add(gamesList[12]);//23
-            tmpList.Add(gamesList[15]);//24
-            tmpList.Add(gamesList[27]);//25
-            tmpList.Add(gamesList[14]);//26
-            tmpList.Add(gamesList[18]);//27
+            ObservableCollection<GamesModel> tempList = new ObservableCollection<GamesModel>();
+            tempList.Add(gamesList[0]);//0              
+            tempList.Add(gamesList[6]);//1            
+            tempList.Add(gamesList[1]);//2
+            tempList.Add(gamesList[21]);//3
+            tempList.Add(gamesList[19]);//4
+            tempList.Add(gamesList[16]);//5
+            tempList.Add(gamesList[26]);//6
+            tempList.Add(gamesList[24]);//7
+            tempList.Add(gamesList[11]);//8
+            tempList.Add(gamesList[3]);//9
+            tempList.Add(gamesList[4]);//10
+            tempList.Add(gamesList[5]);//11
+            tempList.Add(gamesList[2]);//12
+            tempList.Add(gamesList[9]);//13
+            tempList.Add(gamesList[7]);//14
+            tempList.Add(gamesList[13]);//15
+            tempList.Add(gamesList[17]);//16
+            tempList.Add(gamesList[25]);//17
+            tempList.Add(gamesList[8]);//18
+            tempList.Add(gamesList[20]);//19
+            tempList.Add(gamesList[10]);//20
+            tempList.Add(gamesList[23]);//21
+            tempList.Add(gamesList[22]);//22
+            tempList.Add(gamesList[12]);//23
+            tempList.Add(gamesList[15]);//24
+            tempList.Add(gamesList[27]);//25
+            tempList.Add(gamesList[14]);//26
+            tempList.Add(gamesList[18]);//27
             gamesList.Clear();
-            gamesList = tmpList;
+            gamesList = tempList;
         }
-        public void CorrectMissingAPIInfo()
+        public void CorrectMissingAPIInfo() //api has missing dates and description for some results
         {
             foreach(var l in result.data)
             {
                 if (l._id == "5f6ce9d805615a85623ec2b7") // ZELDA 1 (1987)
-                {
                     l.image = "https://upload.wikimedia.org/wikipedia/en/4/41/Legend_of_zelda_cover_%28with_cartridge%29_gold.png"; 
-                }
                 
                 if (l._id == "5f6ce9d805615a85623ec2b8") // LINK TO THE PAST
                     l.image = "https://m.media-amazon.com/images/M/MV5BMDNlYWY4NmEtNWUwOC00YWE1LWJhNzgtMzVhNDdkYTZhZGZhXkEyXkFqcGdeQXVyMTA3NjAwMDc4._V1_.jpg";

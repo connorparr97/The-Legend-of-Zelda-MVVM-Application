@@ -11,6 +11,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Embedded Resources\BotwFont.otf" />
+    <None Remove="Embedded Resources\Windwaker2Font.ttf" />
+    <None Remove="Embedded Resources\WindwakerFont.ttf" />
+    <None Remove="The Wild Breath of Zelda.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Embedded Resources\BotwFont.otf" />
+    <EmbeddedResource Include="Embedded Resources\Windwaker2Font.ttf" />
+    <EmbeddedResource Include="Embedded Resources\WindwakerFont.ttf" />
+    <EmbeddedResource Include="Embedded Resources\Zeldafont.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FunctionZero.MvvmZero" Version="2.2.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="SimpleInjector" Version="5.3.2" />
@@ -19,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="MVVM\Pages\GamePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="MVVM\Pages\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
