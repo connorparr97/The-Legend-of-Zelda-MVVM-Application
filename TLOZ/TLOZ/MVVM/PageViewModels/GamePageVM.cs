@@ -13,37 +13,47 @@ using TLOZ.Services;
 using Xamarin.Forms;
 namespace TLOZ.MVVM.PageViewModels
 {
-    public class GamePageVM : MvvmZeroBaseVm
+    public class GamePageVM : MvvmZeroBaseVm, INotifyPropertyChanged
     {
-        private GamesModel _gamesModel;
-
         private readonly ZeldaService _zeldaService;
-        private readonly IPageServiceZero _pageService;
 
-        private GamesModel _display;
-
-        private GamesModel _result;
-        public GamesModel result; 
+        private SingleGameModel _result;
         public ImageSource backgroundImage { get; set; }
-
-        public GamesModel gamesModel
+        
+        string _Title { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public string Title
         {
-            get => _gamesModel;
-            set => SetProperty(ref _gamesModel, value);
+            get { return _Title; }
+            set { _Title = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("Title"));
+                }
+            }
         }
 
-        public GamesModel Display
+
+        public SingleGameModel Result
         {
-            get => _display;
-            set => SetProperty(ref _display, value);
+            get => _result;
+            set => SetProperty(ref _result, value);
         }
 
-        public GamePageVM(ZeldaService zeldaService, IPageServiceZero pageService)
+        public GamePageVM(ZeldaService zeldaService)
         {
             _zeldaService = zeldaService;
-            _pageService = pageService;
 
             backgroundImage = "https://external-preview.redd.it/9Enzn9tzmnNSRturLNyWm3_auqy74mcRYbbTdxoJqdk.jpg?auto=webp&s=30bcb2ef72e81ed10118dbeed1ba63ec39f5a3f0";
+            
+        }
+
+
+        public void Init(SingleGameModel gameInfo)
+        {
+            Result = gameInfo;
+            Title = $"{gameInfo.name} ({gameInfo.released_date})";
+            System.Diagnostics.Debug.WriteLine($"{Title}");
         }
 
     }

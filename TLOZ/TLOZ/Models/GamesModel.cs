@@ -6,7 +6,7 @@ namespace TLOZ.Models
 {
     public class GamesModel
     {
-        public GamesModel(GamesModel[] _data, string _success, string _count, string id, string _name, string _descrip, string _dev, string _pub, string _released, string v, string _zName, string _image)
+        public GamesModel(GamesModel[] _data, string _success, string _count, string id, string _name, string _descrip, string _dev, string _pub, string _released, string v, string _image)
         {
             data = _data;
             success = _success;

@@ -17,7 +17,6 @@ namespace TLOZ.MVVM.PageViewModels
 {
     public class HomePageVM : MvvmZeroBaseVm
     {
-        //verifying github change???.....
         private GamesModel _gamesModel;
         public ICommand SearchCommand { get; }
         public ICommand GetGameCommand { get; }
@@ -121,13 +120,15 @@ namespace TLOZ.MVVM.PageViewModels
             gameResult = await _zeldaService.GetGameAsync(gameID);
 
             if (gameResult != null)
-            {
-                await _pageService.PushPageAsync<GamePage, GamePageVM>((vm) => { });
-                GameResult = gameResult;
+            { 
+                GameResult = gameResult;          
+                await _pageService.PushPageAsync<GamePage, GamePageVM>((vm) => vm.Init(GameResult.data));
             }
             else
                 await GetGame(detailItem2);
         }
+
+
 
         public async Task GrabGames()
         {
@@ -187,6 +188,7 @@ namespace TLOZ.MVVM.PageViewModels
             gamesList = tempList;
         }
         public void CorrectMissingAPIInfo() //api has missing dates and description for some results
+                                            //and contains no image references for the video games 
         {
             foreach (var l in result.data)
             {

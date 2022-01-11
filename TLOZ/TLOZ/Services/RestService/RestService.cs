@@ -29,13 +29,7 @@ namespace TLOZ.Services
                 string rawData = await response.Content.ReadAsStringAsync();
 
                 // Turn our JSON string into a csharp object (or object-graph)
-
-                System.Diagnostics.Debug.WriteLine("waiting for result..."); 
                 TResponse result = JsonConvert.DeserializeObject<TResponse>(rawData);
-
-                System.Diagnostics.Debug.WriteLine("got result!");
-
-
                 // Return a response of type TResult.
                 return (ResultStatus.Success, result, rawData);
             }
