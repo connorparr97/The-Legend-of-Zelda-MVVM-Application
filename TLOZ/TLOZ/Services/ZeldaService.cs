@@ -24,6 +24,13 @@ namespace TLOZ.Services
             var result = await _restService.GetAsync<GamesModel>($"{_baseUrl}games?limit=100");
             return result.payload; 
         }
+
+        public async Task<SingleGameModel> GetGameAsync(string gameID)
+        {
+            var result = await _restService.GetAsync<SingleGameModel>($"{_baseUrl}games/{gameID}");
+
+            return result.payload;
+        }
     }
 
 }

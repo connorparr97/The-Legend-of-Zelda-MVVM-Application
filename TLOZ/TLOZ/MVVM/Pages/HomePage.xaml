@@ -22,25 +22,30 @@
 
             <Grid BackgroundColor="#052E2C" Grid.Column="1">
                 <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
-                
-                <ListView SelectedItem="{Binding Result, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Transparent" HasUnevenRows="True">
+
+                <ListView x:Name="gameListView" SelectedItem="{Binding Result, Mode=TwoWay}" ItemsSource="{Binding gamesList}" BackgroundColor="Transparent" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid ColumnDefinitions="Auto,Auto">
+                                <Grid x:Name="Item" RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
                                     <Grid RowDefinitions="Auto,Auto,Auto" Grid.Column="1">
                                         <Label Text="{Binding name}" Grid.Row="0" FontSize="40" FontAttributes="Bold" TextColor="White" BackgroundColor="#052E2C" FontFamily="Botwfont"/>
+                                        
+                                        
                                         <Label Text="{Binding released_date}" Grid.Row="1" FontSize="20" TextColor="White" FontAttributes="Bold" FontFamily="Windwakerfont"/>
                                         <Label Text="{Binding description}" Grid.Row="2" FontSize="22" TextColor="White" FontAttributes="Bold" BackgroundColor="#052E2C" FontFamily="Windwakerfont"/>
                                     </Grid>
-                                    <Image Source="{Binding image}" HeightRequest="320" WidthRequest="240" Aspect="AspectFit" Grid.Column="0"/>
+                                    <Image Source="{Binding image}" HeightRequest="320" WidthRequest="240" Aspect="AspectFit" Grid.Column="0" Grid.Row="0"/>
+                                    
+                                    <Button Text=">" Background="White" BindingContext="{Binding Source={x:Reference gameListView}, Path=BindingContext}" 
+                                                Command="{Binding GetGameCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Grid.Column="0" Grid.Row="1"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-           
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

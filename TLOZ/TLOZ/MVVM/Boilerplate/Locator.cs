@@ -31,9 +31,11 @@ namespace TLOZ.MVVM.Boilerplate
 
             //pages 
             _iocc.Register<HomePage>(Lifestyle.Singleton);
+            _iocc.Register<GamePage>(Lifestyle.Singleton);
 
             //viewmodels
-            _iocc.Register<HomePageVM>(Lifestyle.Singleton); 
+            _iocc.Register<HomePageVM>(Lifestyle.Singleton);
+            _iocc.Register<GamePageVM>(Lifestyle.Singleton);
 
             //services
             _iocc.Register<IRestService>(GetRestService, Lifestyle.Singleton);
