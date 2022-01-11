@@ -17,6 +17,7 @@ namespace TLOZ.MVVM.PageViewModels
 {
     public class HomePageVM : MvvmZeroBaseVm
     {
+        //verifying github change???
         private GamesModel _gamesModel;
         public ICommand SearchCommand { get; }
         public ICommand GetGameCommand { get; }
