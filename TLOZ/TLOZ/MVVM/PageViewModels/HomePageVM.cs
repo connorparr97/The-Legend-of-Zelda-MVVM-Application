@@ -128,8 +128,6 @@ namespace TLOZ.MVVM.PageViewModels
                 await GetGame(detailItem2);
         }
 
-
-
         public async Task GrabGames()
         {
             result = await _zeldaService.GetAllGamesAsync();

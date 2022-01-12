@@ -6,7 +6,7 @@ namespace TLOZ.Models
 {
     public class SingleGameModel
     {
-        public SingleGameModel(SingleGameModel _data, string _success, string id, string _name, string _descrip, string _dev, string _pub, string _released, string v)
+        public SingleGameModel(SingleGameModel _data, string _success, string id, string _name, string _descrip, string _dev, string _pub, string _released, string v, string _image)
         {
             data = _data;
             success = _success;
@@ -17,6 +17,7 @@ namespace TLOZ.Models
             publisher = _pub;
             released_date = _released;
             __v = v;
+
          
         }
 
@@ -30,6 +31,8 @@ namespace TLOZ.Models
             public string publisher { get; set; }
             public string released_date { get; set; }
             public string __v { get; set; }
+
+            public string image { get; set; }
        
     }
 }
