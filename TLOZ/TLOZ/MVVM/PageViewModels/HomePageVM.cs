@@ -171,8 +171,7 @@ namespace TLOZ.MVVM.PageViewModels
             
             gamesList = new ObservableCollection<GamesModel>(tmpList);
         }
-        
-        
+ 
         public void CorrectMissingAPIInfo() //api has missing dates and description for some results
                                             //and contains no image references for the video games 
         {

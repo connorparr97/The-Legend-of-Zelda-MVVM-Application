@@ -31,6 +31,13 @@ namespace TLOZ.Services
 
             return result.payload;
         }
+
+        public async Task<CharactersModel> GetAllCharactersAsync(int limit, int page)
+        {
+            var result = await _restService.GetAsync<CharactersModel>($"{_baseUrl}/characters?limit={limit}&page={page}");
+
+            return result.payload; 
+        }
     }
 
 }

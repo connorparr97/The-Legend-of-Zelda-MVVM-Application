@@ -17,13 +17,9 @@ namespace TLOZ.Models
             publisher = _pub;
             released_date = _released;
             __v = v;
-
-         
         }
-
             public string success { get; set; }
             public SingleGameModel data { get; set; }
-
             public string _id { get; set; }
             public string name { get; set; }
             public string description { get; set; }
@@ -31,10 +27,6 @@ namespace TLOZ.Models
             public string publisher { get; set; }
             public string released_date { get; set; }
             public string __v { get; set; }
-
-            public string image { get; set; }
-
-            
-       
+            public string image { get; set; } 
     }
 }

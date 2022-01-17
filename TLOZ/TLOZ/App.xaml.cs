@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using TLOZ.Services;
 using Windows.UI.ViewManagement;
 using Windows.Graphics.Display;
-
 [assembly: ExportFont("Zeldafont.otf", Alias = "Zeldafont")]
 [assembly: ExportFont("BotwFont.otf", Alias = "Botwfont")]
 [assembly: ExportFont("WindwakerFont.ttf", Alias = "Windwakerfont")]
@@ -17,14 +16,9 @@ using Windows.Graphics.Display;
 
 namespace TLOZ
 {
-    
     public partial class App : Application
     {
         public Locator Locator { get; private set;}
-
-
-
-
 
         public App()
         {

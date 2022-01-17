@@ -29,13 +29,13 @@
                             <ViewCell>
                                 <Grid x:Name="Item" RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
                                     <Grid RowDefinitions="Auto,Auto,Auto" Grid.Column="1">
-                                        <Label Text="{Binding name}" Grid.Row="0" FontSize="40" FontAttributes="Bold" TextColor="White" BackgroundColor="#052E2C" FontFamily="OpenSansVariable"/>
+                                        <Label Text="{Binding name}" Grid.Row="0" FontSize="36" FontAttributes="Bold" TextColor="White" BackgroundColor="#052E2C" FontFamily="OpenSansVariable"/>
 
 
-                                        <Label Text="{Binding released_date}" Grid.Row="1" FontSize="20" TextColor="White" FontAttributes="Bold" FontFamily="OpenSansVariable"/>
-                                        <Label Text="{Binding description}" Grid.Row="2" FontSize="22" TextColor="White" FontAttributes="Bold" BackgroundColor="#052E2C" FontFamily="OpenSansVariable"/>
+                                        <Label Text="{Binding released_date}" Grid.Row="1" FontSize="22" TextColor="White" FontAttributes="Bold" FontFamily="OpenSansVariable"/>
+                                        <Label Text="{Binding description}" Grid.Row="2" FontSize="24" TextColor="White"  FontAttributes="Bold" BackgroundColor="#052E2C" FontFamily="OpenSansVariable"/>
                                     </Grid>
-                                    <Image Source="{Binding image}" HeightRequest="320" WidthRequest="240" Aspect="AspectFit" Grid.Column="0" Grid.Row="0"/>
+                                    <Image Source="{Binding image}" HeightRequest="250" WidthRequest="250" Aspect="AspectFit" Grid.Column="0" Grid.Row="0"/>
                                     
                                     <Button Text=">" Background="White" BindingContext="{Binding Source={x:Reference gameListView}, Path=BindingContext}" 
                                                 Command="{Binding GetGameCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Grid.Column="0" Grid.Row="1"/>

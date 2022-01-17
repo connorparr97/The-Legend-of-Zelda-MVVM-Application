@@ -19,8 +19,6 @@ namespace TLOZ.Models
             released_date = _released;
             __v = v;
             image = _image; 
-
-
         }
             public string success { get; set; }
             public string count { get; set; }
@@ -32,10 +30,8 @@ namespace TLOZ.Models
             public string publisher { get; set; }
             public string released_date { get; set; }
             public string __v { get; set; }
-
-        // create extra variable for image links as API doesn't support it 
+            // create extra variable for image links as API doesn't support it 
             public string image { get; set; }
-
             public DateTime newDate { get; set; }
     }
 }

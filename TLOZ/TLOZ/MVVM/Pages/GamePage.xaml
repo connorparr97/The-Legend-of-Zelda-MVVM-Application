@@ -8,18 +8,18 @@
             <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
 
             <Grid RowDefinitions="Auto,Auto,*">
-                <Label Text="The Legend of Zelda: The Collection" FontSize="36" FontFamily="Windwakerfont" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0"  BackgroundColor="#052E2C"/>
+                <Label Text="The Legend of Zelda: The Collection" FontSize="36" FontFamily="OpenSansVariable" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0"  BackgroundColor="#052E2C"/>
                 <Picker x:Name="Dropdownpick" ItemsSource="{Binding FilterList}" SelectedIndex="{Binding SelectedFilter, Mode=TwoWay}" ItemDisplayBinding="{Binding Filter}" SelectedItem="{Binding SelectedFilter, Mode=TwoWay}" 
-                          SelectedIndexChanged="Handle_SelectedIndexChanged" FontFamily="Windwakerfont" TextColor="White" HorizontalOptions="Center" Grid.Row="1" BackgroundColor="#08615C"/>
+                          SelectedIndexChanged="Handle_SelectedIndexChanged" FontFamily="OpenSansVariable" TextColor="White" HorizontalOptions="Center" Grid.Row="1" BackgroundColor="#08615C"/>
                 <WebView x:Name="webv" Grid.Row="2"/>
             </Grid>
 
             <Grid BackgroundColor="#052E2C" Grid.Column="1">
                 <Image Source="{Binding backgroundImage}" Aspect="AspectFill"/>
 
-                <Grid RowDefinitions="Auto,Auto,Auto">
-                    <Label Text="{Binding Title}" FontSize="28" FontFamily="Windwakerfont" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold" Grid.Row="0" BackgroundColor="#052E2C"/>
-                    <Image Source="{Binding gameImage}" HeightRequest="320" WidthRequest="240" Aspect="AspectFit" Grid.Row="1"/>
+                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto">
+                    <Label Text="{Binding Title}" FontSize="34" FontFamily="OpenSansVariable" TextColor="White" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" BackgroundColor="#052E2C" HorizontalOptions="End"/>
+                    <Image Source="{Binding gameImage}" HeightRequest="250" WidthRequest="250" Aspect="AspectFit" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start"/>
 
                 </Grid>
 
