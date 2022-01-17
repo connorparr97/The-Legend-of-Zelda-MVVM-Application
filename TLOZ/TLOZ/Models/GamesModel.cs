@@ -35,5 +35,7 @@ namespace TLOZ.Models
 
         // create extra variable for image links as API doesn't support it 
             public string image { get; set; }
+
+            public DateTime newDate { get; set; }
     }
 }

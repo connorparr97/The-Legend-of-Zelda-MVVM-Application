@@ -33,6 +33,8 @@ namespace TLOZ.Models
             public string __v { get; set; }
 
             public string image { get; set; }
+
+            
        
     }
 }

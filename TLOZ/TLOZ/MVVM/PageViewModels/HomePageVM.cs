@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -140,51 +142,37 @@ namespace TLOZ.MVVM.PageViewModels
                     var tmp = i.released_date.TrimStart();
                     i.released_date = tmp;
                     if (gamesList.Count < Int32.Parse(result.count))
+                    {
                         gamesList.Add(i);
+                        System.Diagnostics.Debug.WriteLine($"{i.released_date}");
+                    }
                 }
                 CorrectMissingAPIInfo();
                 gamesList.Remove(gamesList[16]);//remove triforce heroes copy from list 
                 gamesList.Remove(gamesList[17]); //remove four swords copy from list
-                gamesList.Remove(gamesList[18]); //remove four swords second copy fom list ;
+                gamesList.Remove(gamesList[18]); //remove four swords second copy fom list;         
                 OrderGames();
+
             }
             else
                 await GrabGames();
         }
+
         public void OrderGames()
         {
-            ObservableCollection<GamesModel> tempList = new ObservableCollection<GamesModel>();
-            tempList.Add(gamesList[0]);//0              
-            tempList.Add(gamesList[6]);//1            
-            tempList.Add(gamesList[1]);//2
-            tempList.Add(gamesList[21]);//3
-            tempList.Add(gamesList[19]);//4
-            tempList.Add(gamesList[16]);//5
-            tempList.Add(gamesList[26]);//6
-            tempList.Add(gamesList[24]);//7
-            tempList.Add(gamesList[11]);//8
-            tempList.Add(gamesList[3]);//9
-            tempList.Add(gamesList[4]);//10
-            tempList.Add(gamesList[5]);//11
-            tempList.Add(gamesList[2]);//12
-            tempList.Add(gamesList[9]);//13
-            tempList.Add(gamesList[7]);//14
-            tempList.Add(gamesList[13]);//15
-            tempList.Add(gamesList[17]);//16
-            tempList.Add(gamesList[25]);//17
-            tempList.Add(gamesList[8]);//18
-            tempList.Add(gamesList[20]);//19
-            tempList.Add(gamesList[10]);//20
-            tempList.Add(gamesList[23]);//21
-            tempList.Add(gamesList[22]);//22
-            tempList.Add(gamesList[12]);//23
-            tempList.Add(gamesList[15]);//24
-            tempList.Add(gamesList[27]);//25
-            tempList.Add(gamesList[14]);//26
-            tempList.Add(gamesList[18]);//27
-            gamesList.Clear();
-            gamesList = tempList;
+            List<GamesModel> tmpList = gamesList.ToList();
+            
+            foreach(var item in tmpList)
+            {
+                item.newDate = Convert.ToDateTime(item.released_date);
+            }            
+           
+            tmpList.Sort((x, y) => DateTime.Compare(x.newDate, y.newDate));
+            
+            gamesList = new ObservableCollection<GamesModel>(tmpList);
         }
+        
+        
         public void CorrectMissingAPIInfo() //api has missing dates and description for some results
                                             //and contains no image references for the video games 
         {
@@ -223,7 +211,10 @@ namespace TLOZ.MVVM.PageViewModels
                 if (l._id == "5f6ce9d805615a85623ec2c5") //SPIRIT TRACKS
                 {
                     l.image = "https://vgmsite.com/soundtracks/the-legend-of-zelda-spirit-tracks/zelda%20spirit%20tracks.jpg";
-                    l.description = "Set a century after The Legend of Zelda: The Wind Waker and its sequel Phantom Hourglass, the storyline follows the current incarnations of Link and Princess Zelda as they explore the land of New Hyrule to prevent the awakening of the Demon King Malladus. Players navigate New Hyrule, completing quests that advance the story and solving environmental and dungeon-based puzzles, many requiring use of the DS's touchscreen and other hardware features. Navigation between towns and dungeons is done using a train, which features its own set of mechanics and puzzles.";
+                    l.description = "Set a century after The Legend of Zelda: The Wind Waker and its sequel Phantom Hourglass, the storyline follows the current incarnations " +
+                        "of Link and Princess Zelda as they explore the land of New Hyrule to prevent the awakening of the Demon King Malladus. Players navigate New Hyrule, " +
+                        "completing quests that advance the story and solving environmental and dungeon-based puzzles, many requiring use of the DS's touchscreen and other hardware features. " +
+                        "Navigation between towns and dungeons is done using a train, which features its own set of mechanics and puzzles.";
                 }
 
                 if (l._id == "5f6ce9d805615a85623ec2ca") // ANCIENT STONE TABLETS BS
@@ -266,7 +257,8 @@ namespace TLOZ.MVVM.PageViewModels
                 {
                     l.image = "https://i.redd.it/oaodpc51t5i61.jpg";
                     l.description = "Skyward Sword is the first game in the Zelda timeline detailing the origins of the Master Sword, a recurring weapon within the series. Link, " +
-                        "resident of a floating town called Skyloft, heads on a quest to rescue his childhood friend Zelda after she is kidnapped and brought to the Surface, an abandoned land below the clouds.";
+                        "resident of a floating town called Skyloft, heads on a quest to rescue his childhood friend Zelda after she is kidnapped and brought to the Surface, an abandoned " +
+                        "land below the clouds.";
                 }
 
                 if (l._id == "5f6ce9d805615a85623ec2cc") // BS LEGEND OF ZELDAS

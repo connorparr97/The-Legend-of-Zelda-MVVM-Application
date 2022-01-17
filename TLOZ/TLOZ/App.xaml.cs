@@ -5,10 +5,15 @@ using Xamarin.Forms.Xaml;
 using TLOZ.MVVM.PageViewModels;
 using System.Threading.Tasks;
 using TLOZ.Services;
+using Windows.UI.ViewManagement;
+using Windows.Graphics.Display;
+
 [assembly: ExportFont("Zeldafont.otf", Alias = "Zeldafont")]
 [assembly: ExportFont("BotwFont.otf", Alias = "Botwfont")]
 [assembly: ExportFont("WindwakerFont.ttf", Alias = "Windwakerfont")]
 [assembly: ExportFont("Windwaker2Font.ttf", Alias = "Windwaker2font")]
+[assembly: ExportFont("OpenSansItalic.ttf", Alias = "OpenSansItalic")]
+[assembly: ExportFont("OpenSansVariable.ttf", Alias = "OpenSansVariable")]
 
 namespace TLOZ
 {
@@ -23,7 +28,8 @@ namespace TLOZ
 
         public App()
         {
-
+            //force fullscreen if possible
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Maximized;
 
             InitializeComponent();
 
@@ -45,5 +51,7 @@ namespace TLOZ
         protected override void OnResume()
         {
         }
+
+
     }
 }
